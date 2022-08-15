@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import AuthenticationPage from "./pages/AuthenticationPage";
 import HomePage from "./pages/HomePage";
+import AddPostPage from "./pages/AddPostPage";
 
 import "./App.css";
 
@@ -15,12 +16,16 @@ const App = ({ user }) => {
           <Route
             path="/"
             element={
-              user.uid ? <Navigate to="/home" /> : <AuthenticationPage />
+              user.uid ? <Navigate to="/feeds" /> : <AuthenticationPage />
             }
           />
           <Route
-            path="/home"
+            path="/feeds"
             element={!user.uid ? <Navigate to="/" /> : <HomePage />}
+          />
+          <Route
+            path="/addPost"
+            element={!user.uid ? <Navigate to="/" /> : <AddPostPage />}
           />
         </Routes>
       </div>
